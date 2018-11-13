@@ -2,50 +2,182 @@
 
 import ReactDOM from 'react-dom';
 import * as React from 'react';
-import { Component } from 'react-simplified';
-import { HashRouter, Route, NavLink } from 'react-router-dom';
-import { Alert } from './widgets';
-import { studentService } from './services';
+import {Component} from 'react-simplified';
+import {HashRouter, Route, NavLink} from 'react-router-dom';
+import {Alert} from './widgets';
+//import { studentService } from './services';
+import {postService} from './services';
+import {PostCard} from './components/post/post';
+//import {Category} from './components/category/category';
+import {FeedCard} from './components/feed/feed';
+import {NewPost} from './components/newpost/newpost';
 
 // Reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {
-  let script = document.createElement('script');
-  script.src = '/reload/reload.js';
-  if (document.body) document.body.appendChild(script);
+    let script = document.createElement('script');
+    script.src = '/reload/reload.js';
+    if (document.body) document.body.appendChild(script);
 }
 
 import createHashHistory from 'history/createHashHistory';
+
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
 class Menu extends Component {
-  render() {
-    return (
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <NavLink activeStyle={{ color: 'darkblue' }} exact to="/">
-                React example
-              </NavLink>
-            </td>
-            <td>
-              <NavLink activeStyle={{ color: 'darkblue' }} to="/students">
-                Students
-              </NavLink>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    );
-  }
+    render() {
+        return (
+
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+
+
+                <NavLink exact to="/">
+                    Maakereiret
+                </NavLink>
+                <button className="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"/>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <NavLink activeStyle={{color: 'darkblue'}} to="/">
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeStyle={{color: 'darkblue'}} to="/category/sport">
+                                Sport
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeStyle={{color: 'darkblue'}} to="/category/politikk">
+                                Politikk
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeStyle={{color: 'darkblue'}} to="/new_post">
+                                Add post
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+
+
+            /*
+                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                            <a className="nav-link" href="/">
+                                Maakereiret
+                            </a>
+                            <button className="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <span className="navbar-toggler-icon"/>
+                            </button>
+
+                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul className="navbar-nav mr-auto">
+                                    <li className="nav-item active">
+                                        <a className="nav-link" href="/">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Kategorier
+                                        </a>
+                                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a className="dropdown-item" href="/politikk">
+                                                Politikk
+                                            </a>
+                                            <a className="dropdown-item" href="/sport">
+                                                Sport
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/new_post">
+                                            Add post
+                                        </a>
+                                    </li>
+                                </ul>
+                                <form className="form-inline my-2 my-lg-0">
+                                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </nav>
+                        */
+        );
+    }
 }
 
 class Home extends Component {
-  render() {
-    return <div>React example with component state</div>;
-  }
+    posts = [];
+
+    componentDidMount() {
+        postService
+            .getPosts()
+            .then(posts => (this.posts = posts))
+            .catch((error: Error) => Alert.danger(error.message));
+    }
+
+    render() {
+        return (
+            <div>
+                <FeedCard posts={this.posts}/>
+            </div>
+        )
+    }
 }
 
+class Category extends Component <{ match: { params: { cat: string } } }> {
+    posts = [];
+
+    componentDidMount() {
+        postService
+            .getCat(this.props.match.params.cat)
+            .then(posts => (this.posts = posts))
+            .catch((error: Error) => Alert.danger(error.message));
+    }
+
+    render() {
+        return (
+            <div>
+                <FeedCard posts={this.posts}/>
+            </div>
+        )
+    }
+}
+
+class PostView extends Component <{ match: { params: { post_id: number } } }> {
+    post = null;
+
+    componentDidMount() {
+
+        postService
+            .getPost(this.props.match.params.post_id)
+            .then(post => (this.post = post[0]))
+            .catch((error: Error) => Alert.danger(error.message));
+    }
+
+    render() {
+        if (!this.post) return null;
+        return (
+            <div>
+                <PostCard post_id={this.post.post_id} title={this.post.title} picture={this.post.picture}
+                          picture_text={this.post.picture_text} text={this.post.text}/>
+            </div>
+        )
+    }
+}
+
+
+/*
 class StudentList extends Component {
   students = [];
 
@@ -166,19 +298,19 @@ class StudentEdit extends Component<{ match: { params: { id: number } } }> {
       .catch((error: Error) => Alert.danger(error.message));
   }
 }
-
+*/
 const root = document.getElementById('root');
 if (root)
-  ReactDOM.render(
-    <HashRouter>
-      <div>
-        <Alert />
-        <Menu />
-        <Route exact path="/" component={Home} />
-        <Route path="/students" component={StudentList} />
-        <Route exact path="/students/:id" component={StudentDetails} />
-        <Route exact path="/students/:id/edit" component={StudentEdit} />
-      </div>
-    </HashRouter>,
-    root
-  );
+    ReactDOM.render(
+        <HashRouter>
+            <div>
+                <Alert/>
+                <Menu/>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/category/:cat" component={Category}/>
+                <Route path="/new_post" component={NewPost}/>
+                <Route exact path="/posts/:post_id(\d+)" component={PostView}/>
+            </div>
+        </HashRouter>,
+        root
+    );
