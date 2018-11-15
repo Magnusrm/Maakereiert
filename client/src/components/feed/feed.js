@@ -5,7 +5,7 @@ import {PostCard} from '../post/post';
 export class FeedCard extends Component<{ posts: Post[]}> {
     render() {
         return (
-            <div>
+            <div className="container">
                 {
                     this.props.cat ? (
                         this.props.posts.filter(post => post.category === this.props.cat).map(post =>

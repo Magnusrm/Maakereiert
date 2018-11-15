@@ -28,7 +28,7 @@ export class NewPost extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <form ref={e => (this.form = e)}>
                     <div className="form-group">
                         <label htmlFor="inputTitle">Title</label>
@@ -75,7 +75,8 @@ export class NewPost extends Component {
                     </div>
 
                     <div className="form-group" defaultValue={this.category} onChange={evt => this.category = evt.target.value}>
-                        <select className="form-control">
+                        <label htmlFor="inputCategory">Category</label>
+                        <select className="form-control" id="inputCategory">
                             <option>Default select</option>
                             <option>Sport</option>
                             <option>Politikk</option>
@@ -88,40 +89,8 @@ export class NewPost extends Component {
             </div>
         );
     }
-/*
-    updateTitle(evt) {
-        this.setState({
-            title: evt.target.value
-        });
-    }
 
-    updatePicture(evt) {
-        this.setState({
-            picture: evt.target.value
-        });
-    }
-
-    updatePictureText(evt) {
-        this.setState({
-            pictureText: evt.target.value
-        });
-    }
-
-    updateText(evt) {
-        this.setState({
-            text: evt.target.value
-        });
-    }
-
-    updateCat(evt) {
-        this.setState({
-            category: evt.target.value
-        });
-    }
-
-    */
     create() {
-        console.log('create:');
         let newPost = {
             'title' : this.title,
             'text' : this.text,
@@ -130,6 +99,8 @@ export class NewPost extends Component {
             'category' : this.category
         };
         console.log(newPost);
-        postService.addPost(newPost);
+        postService.addPost(newPost)
+            .then(history.push('/home'))
+            .catch((error: Error) => Alert.danger(error.message));
     }
 }

@@ -32,10 +32,26 @@ class PostService {
 
 }
 
+class Comment {
+    comment_id: number;
+    commenter: string;
+    text: string;
+    comment_date: number;
+    post_id: number;
+}
 
+class CommentService {
+    addComment(newComment: Comment): Promise<Response> {
+        return axios.post('/add_comment', newComment)
+    }
+
+    getComments(post_id: number): Promise<Comment[]> {
+        return axios.get('/comments/' + post_id)
+    }
+}
 
 export let postService = new PostService();
-
+export let commentService = new CommentService();
 
 /*
 

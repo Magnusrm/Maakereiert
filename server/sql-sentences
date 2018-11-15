@@ -1,0 +1,9 @@
+CREATE TABLE comment(
+    comment_id INT AUTO_INCREMENT NOT NULL,
+    commenter VARCHAR(75),
+    text VARCHAR(450),
+    comment_date VARCHAR(50),
+    post_id INT NOT NULL,
+    PRIMARY KEY (comment_id),
+    FOREIGN KEY (post_id) REFERENCES post(post_id)
+    );

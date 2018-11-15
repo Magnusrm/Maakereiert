@@ -6,11 +6,13 @@ import {Component} from 'react-simplified';
 import {HashRouter, Route, NavLink} from 'react-router-dom';
 import {Alert} from './widgets';
 //import { studentService } from './services';
-import {postService} from './services';
+import {postService, commentService} from './services';
 import {PostCard} from './components/post/post';
 //import {Category} from './components/category/category';
 import {FeedCard} from './components/feed/feed';
 import {NewPost} from './components/newpost/newpost';
+import createHashHistory from 'history/createHashHistory';
+
 
 // Reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
     if (document.body) document.body.appendChild(script);
 }
 
-import createHashHistory from 'history/createHashHistory';
+
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
@@ -30,8 +32,8 @@ class Menu extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-dark">
 
 
-                <NavLink exact to="/">
-                    Maakereiret
+                <NavLink className="navbar-brand" style={{color: 'white'}} exact to="/home">
+                    Måkereiret
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -42,22 +44,22 @@ class Menu extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink activeStyle={{color: 'darkblue'}} to="/">
+                            <NavLink className="nav-link" activeStyle={{color: 'skyblue'}} to="/home">
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeStyle={{color: 'darkblue'}} to="/category/sport">
+                            <NavLink  className="nav-link" activeStyle={{color: 'skyblue'}} to="/category/sport">
                                 Sport
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeStyle={{color: 'darkblue'}} to="/category/politikk">
+                            <NavLink  className="nav-link" activeStyle={{color: 'skyblue'}} to="/category/politikk">
                                 Politikk
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeStyle={{color: 'darkblue'}} to="/new_post">
+                            <NavLink  className="nav-link" activeStyle={{color: 'skyblue'}} to="/new_post">
                                 Add post
                             </NavLink>
                         </li>
@@ -156,8 +158,14 @@ class Category extends Component <{ match: { params: { cat: string } } }> {
 
 class PostView extends Component <{ match: { params: { post_id: number } } }> {
     post = null;
+    comments = [];
 
     componentDidMount() {
+
+        commentService
+            .getComments(this.props.match.params.post_id)
+            .then(comment => (this.comments = comment))
+            .catch((error: Error) => Alert.danger(error.message));
 
         postService
             .getPost(this.props.match.params.post_id)
@@ -170,7 +178,7 @@ class PostView extends Component <{ match: { params: { post_id: number } } }> {
         return (
             <div>
                 <PostCard post_id={this.post.post_id} title={this.post.title} picture={this.post.picture}
-                          picture_text={this.post.picture_text} text={this.post.text}/>
+                          picture_text={this.post.picture_text} text={this.post.text} comments={this.comments}/>
             </div>
         )
     }
@@ -306,7 +314,7 @@ if (root)
             <div>
                 <Alert/>
                 <Menu/>
-                <Route exact path="/" component={Home}/>
+                <Route exact path="/home" component={Home}/>
                 <Route exact path="/category/:cat" component={Category}/>
                 <Route path="/new_post" component={NewPost}/>
                 <Route exact path="/posts/:post_id(\d+)" component={PostView}/>
