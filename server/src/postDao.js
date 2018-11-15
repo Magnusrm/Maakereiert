@@ -6,7 +6,8 @@ module.exports = class PostDao extends Dao {
 
     getAll(callback: Function) {
         super.query(
-            "select post_id, title, text, picture, picture_text, date_created, category from post " +
+            "select post_id, title, text, picture, picture_text, date_created, category, importance from post " +
+            "where active = 1 " +
             "order by post_id desc",
             [],
             callback
