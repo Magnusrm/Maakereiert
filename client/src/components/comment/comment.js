@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react-simplified';
 
-export class CommentCard extends Component <{ commenter: string, text: string, comment_date: number }> {
+export class CommentCard extends Component <{ commenter: string, text: string, comment_date: string }> {
     date = new Date(this.props.comment_date);
 
     render() {
@@ -9,7 +9,7 @@ export class CommentCard extends Component <{ commenter: string, text: string, c
             <div className="card">
 
                 <h4>{this.props.commenter}</h4>
-                <p>commented: {this.date.getDay()}.{this.date.getMonth()}.{this.date.getFullYear()}, {this.date.getHours()}:{this.date.getMinutes()}</p>
+                <p>commented: {this.props.comment_date}</p>
 
                 <p>{this.props.text}</p>
             </div>

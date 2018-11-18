@@ -96,11 +96,12 @@ export class Form {
 
 export class Button extends Component<{
     onClick: () => mixed,
-    children: React.Node
+    children: React.Node,
+    type: string
 }>{
     render() {
         return(
-            <button type="button" className="btn btn-primary" onClick={this.props.onClick}>
+            <button type="button" className={"btn btn-" + this.props.type} onClick={this.props.onClick}>
                 {this.props.children}
             </button>
         );

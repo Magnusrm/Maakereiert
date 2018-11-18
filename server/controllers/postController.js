@@ -3,7 +3,7 @@ let urlencodedParser = bodyParser.urlencoded({extended: false});
 
 module.exports = function(app, postDao) {
 
-    app.get('/posts', (req, res) => {
+    app.get('/posts/', (req, res) => {
         console.log('got get request from');
         postDao.getAll((status, data) => {
             res.status(status);
@@ -34,16 +34,12 @@ module.exports = function(app, postDao) {
         })
     });
 
-    app.get('/rediger_post', (req, res) => {
-        res.render('rediger_post');
+    app.put('/delete_post/:post_id', (req, res) => {
+        console.log('got delete request from service');
+        postDao.deletePost(req.params.post_id, (status, data) => {
+            res.status(status);
+        })
     });
 
-    app.post('/rediger_post', (req, res) => {
-
-    });
-
-    app.delete('/rediger_post', (req, res) => {
-
-    });
 
 };

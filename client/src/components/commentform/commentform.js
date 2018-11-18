@@ -40,7 +40,7 @@ export class CommentForm extends Component <{post_id: number}> {
                         />
                     </div>
 
-                    <Button onClick={this.create}>Submit</Button>
+                    <Button onClick={this.create} type="primary">Submit</Button>
 
                 </form>
             </div>
@@ -48,9 +48,14 @@ export class CommentForm extends Component <{post_id: number}> {
     }
 
     create() {
+
+        let time = new Date();
+        let dateCreated = (time.getDay() + '/' + time.getMonth() + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
+
         let newComment = {
             'commenter' : this.commenter,
             'text' : this.text,
+            'comment_date' : dateCreated,
             'post_id' : this.props.post_id
         };
         this.commenter = "";

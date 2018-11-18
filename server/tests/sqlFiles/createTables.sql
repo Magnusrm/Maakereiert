@@ -8,7 +8,7 @@ CREATE TABLE post(
     text VARCHAR(10000),
     picture VARCHAR(225),
     picture_text VARCHAR(250)),
-    date_created BIGINT,
+    date_created VARCHAR(59),
     category VARCHAR(45),
     importance int(1),
     active int(1),

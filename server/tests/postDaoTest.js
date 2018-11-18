@@ -1,15 +1,14 @@
 import mysql from 'mysql';
 import PostDao from '../src/postDao';
-import runsqlfile from 'runSQLFile';
-
+import runsqlfile from './runSQLFile';
 
 // GitLab CI Pool
 let pool = mysql.createPool({
-    connectionLimit: 1,
+    connectionLimit: 40,
     host: "mysql",
     user: "root",
-    password: "secret",
-    database: "supertestdb",
+    password: "abc123",
+    database: "testdb",
     debug: false,
     multipleStatements: true
 });
@@ -17,8 +16,8 @@ let pool = mysql.createPool({
 let postDao = new PostDao(pool);
 
 beforeAll(done => {
-    runsqlfile("dao/createTables.sql", pool, () => {
-        runsqlfile("dao/createTestData.sql", pool, done);
+    runsqlfile("sqlFiles/createTables.sql", pool, () => {
+        runsqlfile("sqlFiles/createTestData.sql", pool, done);
     });
 });
 

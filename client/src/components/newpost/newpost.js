@@ -4,25 +4,18 @@ import {postService} from '../../services';
 import {Button} from '../../widgets';
 import {Alert, Form} from "../../widgets";
 
+import createHashHistory from 'history/createHashHistory';
+const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
+
+
 export class NewPost extends Component {
-/*
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: '',
-            text: '',
-            picture: '',
-            pictureText: '',
-            category: ''
-        };
-    }
-*/
+
     title = '';
     text = '';
     picture = '';
     pictureText = '';
-    dateCreated = '';
     category = '';
+    importance = 0;
     form = null;
 
 
@@ -77,27 +70,50 @@ export class NewPost extends Component {
                     <div className="form-group" defaultValue={this.category} onChange={evt => this.category = evt.target.value}>
                         <label htmlFor="inputCategory">Category</label>
                         <select className="form-control" id="inputCategory">
-                            <option>Default select</option>
+                            <option>Annet</option>
                             <option>Sport</option>
                             <option>Politikk</option>
-                            <option>Annet</option>
                         </select>
                     </div>
 
-                    <Button onClick={this.create}>Submit</Button>
+                    <div className="form-group" defaultValue={this.importance} onChange={evt => this.importance = evt.target.value}>
+                        <label htmlFor="inputImportance">Viktighet</label>
+                        <select className="form-control" id="inputImportance">
+                            <option value={0}>Viktighet</option>
+                            <option value={1}>Viktig</option>
+                            <option value={2}>Mindre viktig</option>
+                        </select>
+                    </div>
+
+                    <Button onClick={this.create} type="primary">Submit</Button>
                 </form>
             </div>
         );
     }
 
     create() {
+        let time = new Date();
+        let dateCreated = (time.getDay() + '/' + time.getMonth() + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
+
         let newPost = {
             'title' : this.title,
             'text' : this.text,
             'picture' : this.picture,
             'pictureText' : this.pictureText,
-            'category' : this.category
+            'date_created' : dateCreated,
+            'category' : this.category,
+            'importance' : this.importance,
+            'active' : 1
         };
+
+        this.title = '';
+        this.text = '';
+        this.picture = '';
+        this.pictureText = '';
+        this.dateCreated = '';
+        this.category = '';
+        this.importance = 0;
+
         console.log(newPost);
         postService.addPost(newPost)
             .then(history.push('/home'))

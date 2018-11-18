@@ -11,11 +11,12 @@ class Post {
     picture_text: string;
     date_created: string;
     category: string;
+    importance: string
 }
 
 class PostService {
     getPosts(): Promise<Post[]> {
-        return axios.get('/posts');
+        return axios.get('/posts/');
     }
 
     getCat(cat: string): Promise<Post[]> {
@@ -30,13 +31,17 @@ class PostService {
         return axios.post('/add_post', newPost);
     }
 
+    deletePost(post_id: number): Promise<Response> {
+        return axios.put('/delete_post/' + post_id);
+    }
+
 }
 
 class Comment {
     comment_id: number;
     commenter: string;
     text: string;
-    comment_date: number;
+    comment_date: string;
     post_id: number;
 }
 
@@ -48,32 +53,15 @@ class CommentService {
     getComments(post_id: number): Promise<Comment[]> {
         return axios.get('/comments/' + post_id)
     }
+
+    deleteComment(comment_id:number): Promise<Response> {
+        return axios.put('delete_comment/' + comment_id);
+    }
+
+    deleteComments(post_id: number): Promise<Response> {
+        return axios.put('/delete_post/' + post_id);
+    }
 }
 
 export let postService = new PostService();
 export let commentService = new CommentService();
-
-/*
-
-class Student {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-class StudentService {
-  getStudents(): Promise<Student[]> {
-    return axios.get('/students');
-  }
-
-  getStudent(id: number): Promise<Student> {
-    return axios.get('/students/' + id);
-  }
-
-  updateStudent(student: Student): Promise<void> {
-    return axios.put('/students', student);
-  }
-}
-export let studentService = new StudentService();
-*/

@@ -14,8 +14,8 @@ module.exports = class CommentDao extends Dao {
         );
     }
 
-    addComment(json: JSON, callback: Function) {
-        var val = [json.commenter, json.text, Date.now(), json.post_id];
+    addComment(json: Object, callback: Function) {
+        let val = [json.commenter, json.text, json.comment_date, json.post_id];
         super.query(
             "insert into comment (commenter, text, comment_date, post_id) values(?, ?, ?, ?)",
             val,
