@@ -6,6 +6,7 @@ import {Component} from 'react-simplified';
 import {HashRouter, Route, NavLink} from 'react-router-dom';
 import {Alert, Button} from './widgets';
 //import { studentService } from './services';
+import {EditPost} from './components/editpost/editpost';
 import {postService, commentService} from './services';
 import {PostCard} from './components/post/post';
 //import {Category} from './components/category/category';
@@ -27,11 +28,10 @@ const history = createHashHistory(); // Use history.push(...) to programmaticall
 class Menu extends Component {
     render() {
         return (
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark" style={{height: 80}}>
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
 
-
-                <NavLink className="navbar-brand" style={{color: 'white'}} exact to="/home">
+                <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}} exact to="/home">
                     Måkereiret
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -43,22 +43,22 @@ class Menu extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeStyle={{color: 'skyblue'}} to="/home">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/home">
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeStyle={{color: 'skyblue'}} to="/category/sport">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/category/sport">
                                 Sport
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeStyle={{color: 'skyblue'}} to="/category/politikk">
-                                Politikk
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/category/politikk">
+                                Politics
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" activeStyle={{color: 'skyblue'}} to="/new_post">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/new_post">
                                 Add post
                             </NavLink>
                         </li>
@@ -74,27 +74,31 @@ class Menu extends Component {
 class LiveFeed extends Component {
 
     posts = [];
-    text = '';
 
     componentDidMount() {
         postService
             .getPosts()
             .then(posts => (this.posts = posts))
             .catch((error: Error) => Alert.danger(error.message));
-        console.log('hahaha');
-        this.posts.slice(0, 5).map(post => this.text += (post.title + ', ' + post.date_created + '               '));
-        console.log(this.text)
     }
 
     render() {
         return (
-            <div>
 
-                <marquee>
-                    hallo
+            <div>
+                <marquee truespeed="true" scrolldelay="45">
+                    <div>
+                        {this.posts.slice(0, 5).map(post =>
+
+                        <NavLink key={post.post_id} exact to={'/posts/' + post.post_id} style={{color: 'black'}}><span>{'..............' + post.title + ', ' + post.date_created + '............'}</span></NavLink>
+
+                        )}
+                    </div>
                 </marquee>
             </div>
-        );
+
+    )
+        ;
     }
 }
 
@@ -165,6 +169,18 @@ class PostView extends Component <{ match: { params: { post_id: number } } }> {
     }
 }
 
+class Footer extends Component {
+    render () {
+        return(
+            <div className="card-footer text-center bg-dark">
+                <span>
+                &copy;<p style={{color: 'skyblue'}}>magnusrm@stud.ntnu.no</p>
+                </span>
+            </div>
+        );
+    }
+}
+
 const root = document.getElementById('root');
 if (root)
     ReactDOM.render(
@@ -177,6 +193,8 @@ if (root)
                 <Route exact path="/category/:cat" component={Category}/>
                 <Route path="/new_post" component={NewPost}/>
                 <Route exact path="/posts/:post_id(\d+)" component={PostView}/>
+                <Route exact path="/edit_post/:post_id(\d+)" component={EditPost}/>
+                <Footer/>
             </div>
         </HashRouter>,
         root

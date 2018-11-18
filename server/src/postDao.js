@@ -42,6 +42,15 @@ module.exports = class PostDao extends Dao {
         );
     }
 
+    updatePost(post_id: number, json: Object, callback: Function) {
+        let val = [json.title, json.text, json.picture, json.pictureText, json.category, json.importance, post_id];
+        super.query(
+            "update post set title =?, text =?, picture =?, picture_text=?, category=?, importance=? " +
+            "where post_id = ?",
+            val,
+            callback
+        );
+    }
 
 
     deletePost(post_id: number, callback: Function) {

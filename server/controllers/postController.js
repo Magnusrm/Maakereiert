@@ -41,5 +41,12 @@ module.exports = function(app, postDao) {
         })
     });
 
+    app.put('/edit_post/:post_id', urlencodedParser, (req, res) => {
+        console.log('got update request from service');
+        postDao.updatePost(req.params.post_id, req.body, (status, data) => {
+            res.status(status);
+        })
+    });
+
 
 };

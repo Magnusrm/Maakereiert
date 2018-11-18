@@ -50,7 +50,7 @@ export class CommentForm extends Component <{post_id: number}> {
     create() {
 
         let time = new Date();
-        let dateCreated = (time.getDay() + '/' + time.getMonth() + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
+        let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
 
         let newComment = {
             'commenter' : this.commenter,
