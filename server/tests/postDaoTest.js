@@ -31,7 +31,7 @@ test("Get all active posts", done => {
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
         expect(data.length).toBe(7);
-        expect(data[0].title).toBe("Test title1");
+        expect(data[0].title).toBe("Test title9");
         done();
     }
 

@@ -31,7 +31,7 @@ test("Get all comments from specified post", done => {
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
         expect(data.length).toBe(2);
-        expect(data[0].commenter).toBe("Guy1");
+        expect(data[0].commenter).toBe("Guy2");
         done();
     }
 
