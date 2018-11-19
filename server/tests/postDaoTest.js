@@ -96,9 +96,10 @@ test("Add a post to database", done => {
         );
         expect(data.length).toBe(7);
         expect(data[0].title).toBe("TEST TITLE");
+        done();
     }
     postDao.getAll(callback2);
-    done();
+
 });
 
 test("Edit an existing post", done => {
@@ -125,9 +126,9 @@ test("Edit an existing post", done => {
         );
         expect(data.length).toBe(6);
         expect(data[0].title).toBe("TEST TITLE EDIT");
+        done();
     }
     postDao.getAll(callback2);
-    done();
 });
 
 
