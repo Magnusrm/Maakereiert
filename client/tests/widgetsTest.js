@@ -2,15 +2,25 @@
 
 import * as React from 'react';
 import {Component} from 'react-simplified';
-import {Alert} from '../src/widgets.js';
+import {Alert, Button} from '../src/widgets.js';
 import {shallow, mount} from 'enzyme';
+import {spy} from 'sinon';
 
 
+describe('Test for Button component', () => {
+    let wrapper, buttonType, buttonSpy, children;
+// type = danger,, onClick = functin, children
+    beforeEach(() => {
+        buttonType = 'danger';
+        buttonSpy = spy();
+        children = 'clickMe';
+        wrapper = shallow(<Button id="button" type={buttonType} onClick={() => buttonSpy}>children</Button>);
+    });
 
-describe('Button test', () => {
-
-
-    const wrapper = shallow()
+    it('Testing clicking button', () => {
+        wrapper.find("#button").simulate('click');
+        expect(buttonSpy.called);
+    });
 });
 
 

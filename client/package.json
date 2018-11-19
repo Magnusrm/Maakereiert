@@ -19,7 +19,8 @@
     "chai": "^4.2.0",
     "jest-transform-stub": "^1.0.0",
     "react-router-dom": "^4.3.1",
-    "react-simplified": "^1.5.2"
+    "react-simplified": "^1.5.2",
+    "sinon": "^7.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

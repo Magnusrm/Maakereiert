@@ -18,8 +18,8 @@ let commentDao = new CommentDao(pool);
 let postDao = new PostDao(pool);
 
 beforeAll(done => {
-    runsqlfile("./sqlFiles/createTables.sql", pool, () => {
-        runsqlfile("./sqlFiles/createTestData.sql", pool, done);
+    runsqlfile("tests/sqlFiles/createTables.sql", pool, () => {
+        runsqlfile("tests/sqlFiles/createTestData.sql", pool, done);
     });
 });
 
