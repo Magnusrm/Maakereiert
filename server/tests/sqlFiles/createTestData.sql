@@ -12,9 +12,9 @@ values (5, 'Test title5', 'Article text5', 'https://bornrealist.com/wp-content/u
 INSERT INTO post (post_id,title, text, picture, picture_text, date_created, category, importance, active)
 values (6, 'Test title6', 'Article text6', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text6', '26/10/2018 13:45', 'sport', 2, 1);
 INSERT INTO post (post_id,title, text, picture, picture_text, date_created, category, importance, active)
-values (7, 'Test title7', 'Article text7', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text7', '26/10/2018 13:45', 'sport', 2, 1);
+values (7, 'Test title7', 'Article text7', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text7', '26/10/2018 13:45', 'sport', 2, 0);
 INSERT INTO post (post_id,title, text, picture, picture_text, date_created, category, importance, active)
-values (8, 'Test title8', 'Article text8', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text8', '26/10/2018 13:45', 'sport', 1, 1);
+values (8, 'Test title8', 'Article text8', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text8', '26/10/2018 13:45', 'sport', 1, 0);
 INSERT INTO post (post_id,title, text, picture, picture_text, date_created, category, importance, active)
 values (9, 'Test title9', 'Article text9', 'https://bornrealist.com/wp-content/uploads/2017/10/girl.jpg', 'picture text9', '26/10/2018 13:45', 'sport', 1, 1);
 

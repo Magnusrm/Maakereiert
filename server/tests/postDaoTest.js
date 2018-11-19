@@ -28,7 +28,6 @@ afterAll(() => {
 });
 
 
-
 //postDao tests
 
 test("Get all active posts", done => {
@@ -36,7 +35,7 @@ test("Get all active posts", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(7);
+        expect(data.length).toBe(6);
         expect(data[0].title).toBe("Test title9");
         done();
     }
@@ -44,7 +43,93 @@ test("Get all active posts", done => {
     postDao.getAll(callback);
 });
 
+test("Get all active posts with specified category", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(5);
+        expect(data[0].title).toBe("Test title9");
+        expect(data[0].category).toBe("sport");
+        done();
+    }
 
+    postDao.getCat('sport', callback);
+});
+
+test("Get specified post", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(1);
+        expect(data[0].title).toBe("Test title6");
+        done();
+    }
+
+    postDao.getPost(6, callback);
+});
+
+test("Add a post to database", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+    }
+
+    let post = {
+        title: 'TEST TITLE',
+        text: 'TEST TEXT',
+        picture: 'TEST PICTURE',
+        picture_text: 'TEST PICTURE TEXT',
+        date_created: 'TEST DATE',
+        category: 'TEST CATEGORY',
+        importance: 1,
+        active: 1
+    };
+
+    postDao.addPost(post, callback);
+
+    function callback2(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(7);
+        expect(data[0].title).toBe("TEST TITLE");
+    }
+
+    postDao.getAll(callback2);
+});
+
+test("Edit an existing post", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+    }
+
+    let post = {
+        title: 'TEST TITLE',
+        text: 'TEST TEXT',
+        picture: 'TEST PICTURE',
+        picture_text: 'TEST PICTURE TEXT',
+        category: 'TEST CATEGORY',
+        importance: 1,
+        active: 1
+    };
+
+    postDao.updatePost(9, post, callback);
+
+    function callback2(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(6);
+        expect(data[0].title).toBe("TEST TITLE");
+    }
+
+    postDao.getAll(callback2);
+});
 
 
 // commentDao tests
@@ -55,7 +140,7 @@ test("Get all comments from specified post", done => {
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
         expect(data.length).toBe(2);
-        expect(data[0].commenter).toBe("Guy2");
+        expect(data[0].commenter).toBe("Guy1");
         done();
     }
 
