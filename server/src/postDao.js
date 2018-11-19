@@ -34,7 +34,7 @@ module.exports = class PostDao extends Dao {
     }
 
     addPost(json: Object, callback: Function) {
-        let val = [json.title, json.text, json.picture, json.pictureText, json.date_created, json.category, json.importance];
+        let val = [json.title, json.text, json.picture, json.picture_text, json.date_created, json.category, json.importance];
         super.query(
             "insert into post (title, text, picture, picture_text, date_created, category, importance, active) values(?, ?, ?, ?, ?, ?, ?, 1)",
             val,

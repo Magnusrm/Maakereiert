@@ -4,7 +4,10 @@ import * as React from 'react';
 import {Component} from 'react-simplified';
 import {Alert, Button} from '../src/widgets.js';
 import {shallow, mount} from 'enzyme';
+import chai, {expect} from 'chai';
+import sinonChai from 'sinon-chai';
 import {spy} from 'sinon';
+chai.use(sinonChai);
 
 
 describe('Test for Button component', () => {

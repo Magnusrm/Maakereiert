@@ -115,7 +115,6 @@ test("Edit an existing post", done => {
         picture_text: 'TEST PICTURE TEXT',
         category: 'TEST CATEGORY',
         importance: 1,
-        active: 1
     };
 
     postDao.updatePost(9, post, callback);

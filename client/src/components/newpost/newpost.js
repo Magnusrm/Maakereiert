@@ -14,7 +14,7 @@ export class NewPost extends Component {
     title = '';
     text = '';
     picture = '';
-    pictureText = '';
+    picture_text = '';
     category = '';
     importance = 0;
     form = null;
@@ -113,8 +113,7 @@ export class NewPost extends Component {
         this.title = '';
         this.text = '';
         this.picture = '';
-        this.pictureText = '';
-        this.dateCreated = '';
+        this.picture_text = '';
         this.category = '';
         this.importance = 0;
 
