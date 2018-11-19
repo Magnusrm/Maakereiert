@@ -35,7 +35,7 @@ test("Get all active posts", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(6);
+        expect(data.length).toBe(6);
         expect(data[0].title).toBe("Test title9");
         done();
     }
@@ -48,7 +48,7 @@ test("Get all active posts with specified category", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(5);
+        expect(data.length).toBe(5);
         expect(data[0].title).toBe("Test title9");
         expect(data[0].category).toBe("sport");
         done();
@@ -62,7 +62,7 @@ test("Get specified post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(1);
+        expect(data.length).toBe(1);
         expect(data[0].title).toBe("Test title6");
         done();
     }
@@ -94,7 +94,7 @@ test("Add a post to database", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(7);
+        expect(data.length).toBe(7);
         expect(data[0].title).toBe("TEST TITLE");
     }
     postDao.getAll(callback2);
@@ -123,7 +123,7 @@ test("Edit an existing post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(6);
+        expect(data.length).toBe(6);
         expect(data[0].title).toBe("TEST TITLE EDIT");
     }
     postDao.getAll(callback2);
@@ -138,7 +138,7 @@ test("Get all comments from specified post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.rows).toBe(2);
+        expect(data.length).toBe(2);
         expect(data[0].commenter).toBe("Guy1");
         done();
     }

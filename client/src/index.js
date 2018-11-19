@@ -43,22 +43,26 @@ class Menu extends Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/home">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
+                                     activeStyle={{color: 'skyblue'}} to="/home">
                                 Home
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/category/sport">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
+                                     activeStyle={{color: 'skyblue'}} to="/category/sport">
                                 Sport
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/category/politikk">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
+                                     activeStyle={{color: 'skyblue'}} to="/category/politikk">
                                 Politics
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}} activeStyle={{color: 'skyblue'}} to="/new_post">
+                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
+                                     activeStyle={{color: 'skyblue'}} to="/new_post">
                                 Add post
                             </NavLink>
                         </li>
@@ -76,11 +80,17 @@ class LiveFeed extends Component {
     posts = [];
 
     componentDidMount() {
+        this.getCases();
+        setInterval(this.getCases, 5000);
+    }
+
+
+    getCases = () => {
         postService
             .getPosts()
             .then(posts => (this.posts = posts))
             .catch((error: Error) => Alert.danger(error.message));
-    }
+    };
 
     render() {
         return (
@@ -90,16 +100,17 @@ class LiveFeed extends Component {
                     <div>
                         {this.posts.slice(0, 5).map(post =>
 
-                        <NavLink key={post.post_id} exact to={'/posts/' + post.post_id} style={{color: 'black'}}><span>{'..............' + post.title + ', ' + post.date_created + '............'}</span></NavLink>
-
+                            <NavLink key={post.post_id} exact to={'/posts/' + post.post_id}
+                                     style={{color: 'black'}}><span>{'..............' + post.title + ', ' + post.date_created + '............'}</span></NavLink>
                         )}
                     </div>
                 </marquee>
             </div>
 
-    )
-        ;
+        );
     }
+
+
 }
 
 class Home extends Component {
@@ -170,8 +181,8 @@ class PostView extends Component <{ match: { params: { post_id: number } } }> {
 }
 
 class Footer extends Component {
-    render () {
-        return(
+    render() {
+        return (
             <div className="card-footer text-center bg-dark">
                 <span>
                 &copy;<p style={{color: 'skyblue'}}>magnusrm@stud.ntnu.no</p>
