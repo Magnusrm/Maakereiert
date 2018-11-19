@@ -38,7 +38,6 @@ class PostService {
     editPost(post: Post, post_id: number): Promise<Response> {
         return axios.put('/edit_post/' + post_id, post)
     }
-
 }
 
 class Comment {
