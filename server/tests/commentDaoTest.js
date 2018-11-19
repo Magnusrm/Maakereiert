@@ -16,8 +16,8 @@ let pool = mysql.createPool({
 let commentDao = new CommentDao(pool);
 
 beforeAll(done => {
-    runsqlfile("tests/sqlFiles/createTables.sql", pool, () => {
-        runsqlfile("tests/sqlFiles/createTestData.sql", pool, done);
+    runsqlfile("./sqlFiles/createTables.sql", pool, () => {
+        runsqlfile("./sqlFiles/createTestData.sql", pool, done);
     });
 });
 

@@ -11,7 +11,7 @@ describe('Button test', () => {
 
 
     const wrapper = shallow()
-})
+});
 
 
 describe('Alert tests', () => {

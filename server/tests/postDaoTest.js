@@ -16,8 +16,8 @@ let pool = mysql.createPool({
 let postDao = new PostDao(pool);
 
 beforeAll(done => {
-    runsqlfile("sqlFiles/createTables.sql", pool, () => {
-        runsqlfile("sqlFiles/createTestData.sql", pool, done);
+    runsqlfile("./sqlFiles/createTables.sql", pool, () => {
+        runsqlfile("./sqlFiles/createTestData.sql", pool, done);
     });
 });
 
