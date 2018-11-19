@@ -35,8 +35,8 @@ test("Get all active posts", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(6);
-        expect(data[0].title).toBe("Test title9");
+        expect(data.rows).toBe(6);
+        expect(data[0].title).toEqual("Test title9");
         done();
     }
 
@@ -48,9 +48,9 @@ test("Get all active posts with specified category", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(5);
-        expect(data[0].title).toBe("Test title9");
-        expect(data[0].category).toBe("sport");
+        expect(data.rows).toBe(5);
+        expect(data[0].title).toEqual("Test title9");
+        expect(data[0].category).toEqual("sport");
         done();
     }
 
@@ -62,8 +62,8 @@ test("Get specified post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(1);
-        expect(data[0].title).toBe("Test title6");
+        expect(data.rows).toBe(1);
+        expect(data[0].title).toEqual("Test title6");
         done();
     }
 
@@ -94,11 +94,11 @@ test("Add a post to database", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(7);
-        expect(data[0].title).toBe("TEST TITLE");
+        expect(data.rows).toBe(7);
+        expect(data[0].title).toEqual("TEST TITLE");
     }
-
     postDao.getAll(callback2);
+    done();
 });
 
 test("Edit an existing post", done => {
@@ -109,7 +109,7 @@ test("Edit an existing post", done => {
     }
 
     let post = {
-        title: 'TEST TITLE',
+        title: 'TEST TITLE EDIT',
         text: 'TEST TEXT',
         picture: 'TEST PICTURE',
         picture_text: 'TEST PICTURE TEXT',
@@ -123,11 +123,11 @@ test("Edit an existing post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(6);
-        expect(data[0].title).toBe("TEST TITLE");
+        expect(data.rows).toBe(6);
+        expect(data[0].title).toEqual("TEST TITLE EDIT");
     }
-
     postDao.getAll(callback2);
+    done();
 });
 
 
@@ -138,8 +138,8 @@ test("Get all comments from specified post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(2);
-        expect(data[0].commenter).toBe("Guy1");
+        expect(data.rows).toBe(2);
+        expect(data[0].commenter).toEqual("Guy1");
         done();
     }
 
