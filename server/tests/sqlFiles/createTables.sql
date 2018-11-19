@@ -7,11 +7,11 @@ CREATE TABLE post(
     title VARCHAR(45),
     text VARCHAR(10000),
     picture VARCHAR(225),
-    picture_text VARCHAR(250)),
+    picture_text VARCHAR(250),
     date_created VARCHAR(59),
     category VARCHAR(45),
-    importance int(1),
-    active int(1),
+    importance INT(1),
+    active INT(1),
     PRIMARY KEY (post_id)
     );
 
