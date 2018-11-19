@@ -29,7 +29,7 @@ afterAll(() => {
 
 
 //postDao tests
-
+/*
 test("Get all active posts", done => {
     function callback(status, data) {
         console.log(
@@ -70,6 +70,8 @@ test("Get specified post", done => {
     postDao.getPost(6, callback);
 });
 
+*/
+
 test("Add a post to database", done => {
     function callback(status, data) {
         console.log(
@@ -102,6 +104,7 @@ test("Add a post to database", done => {
 
 });
 
+/*
 test("Edit an existing post", done => {
     function callback(status, data) {
         console.log(
@@ -131,7 +134,7 @@ test("Edit an existing post", done => {
     postDao.getAll(callback2);
 });
 
-
+*/
 // commentDao tests
 
 test("Get all comments from specified post", done => {
