@@ -74,14 +74,12 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
         if(confirm('Er du sikker på at du vil slette posten?')) {
             postService
                 .deletePost(this.props.post_id)
-                .then(Alert.success('Post ble slettet'))
+                .then(Alert.success('Post deleted successfully'))
                 .then(history.push('/home/'))
                 .catch((error: Error) => Alert.danger(error.message));
 
         } else {
             Alert.info('post ble ikke slettet')
         }
-
-
     }
 }

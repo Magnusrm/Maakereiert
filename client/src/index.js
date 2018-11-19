@@ -81,7 +81,7 @@ class LiveFeed extends Component {
 
     componentDidMount() {
         this.getCases();
-        setInterval(this.getCases, 5000);
+        setInterval(this.getCases, 60000);
     }
 
 
