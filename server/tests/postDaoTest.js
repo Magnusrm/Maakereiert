@@ -71,11 +71,19 @@ test("Get specified post", done => {
 });
 
 
-test("Add a post to database", done => {
+test.only("Add a post to database", done => {
     function callback(status, data) {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
+    }
+    function callback2(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(7);
+        expect(data[0].title).toBe("TEST TITLE");
+        done();
     }
 
     let post = {
@@ -89,26 +97,27 @@ test("Add a post to database", done => {
         active: 1
     };
 
-    postDao.addPost(post, callback);
+    postDao.addPost(post, callback)
+        .then(postDao.getAll(callback2))
+
+
+});
+
+
+test("Edit an existing post", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+    }
 
     function callback2(status, data) {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(7);
-        expect(data[0].title).toBe("TEST TITLE");
+        expect(data.length).toBe(6);
+        expect(data[0].title).toBe("TEST TITLE EDIT");
         done();
-    }
-    postDao.getAll(callback2);
-
-});
-
-
-test.only("Edit an existing post", done => {
-    function callback(status, data) {
-        console.log(
-            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
-        );
     }
 
     let post = {
@@ -120,17 +129,10 @@ test.only("Edit an existing post", done => {
         importance: 1,
     };
 
-    postDao.updatePost(9, post, callback);
+    postDao.updatePost(9, post, callback)
+        .then(postDao.getAll(callback2))
 
-    function callback2(status, data) {
-        console.log(
-            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
-        );
-        expect(data.length).toBe(6);
-        expect(data[0].title).toBe("TEST TITLE EDIT");
-        done();
-    }
-    postDao.getAll(callback2);
+
 });
 
 
