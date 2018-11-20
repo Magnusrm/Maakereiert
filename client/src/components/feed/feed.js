@@ -33,7 +33,7 @@ export class FeedCard extends Component<{ posts: Post[] }> {
                     )
                 }
 
-                <p  id="nrPosts">Showing {this.props.posts.slice(0, this.limit).length} of {this.props.posts.length} results.</p>
+                <p id="nrPosts">Showing {this.props.posts.slice(0, this.limit).length} of {this.props.posts.length} results.</p>
             </div>
         );
     }

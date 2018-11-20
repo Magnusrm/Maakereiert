@@ -98,9 +98,9 @@ export class Button extends Component<{
     onClick: () => mixed,
     children: React.Node,
     type: string
-}>{
+}> {
     render() {
-        return(
+        return (
             <button type="button" className={"btn btn-" + this.props.type} onClick={this.props.onClick}>
                 {this.props.children}
             </button>

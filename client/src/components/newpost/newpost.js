@@ -108,7 +108,7 @@ export class NewPost extends Component {
     }
 
     create() {
-        if(this.validateForm()) {
+        if (this.validateForm()) {
             let time = new Date();
             let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
 

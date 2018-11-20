@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 import {Alert, Button} from '../../widgets';
 import {postService} from '../../services';
 import {CommentForm} from '../commentform/commentform';
-import {CommentFeed} from '../commentfeed/commentfeed';
 
 import createHashHistory from 'history/createHashHistory';
 
@@ -20,11 +19,10 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
                         <div>
                             <div className="card">
                                 <picture>
-                                    <img id="picture" src={this.props.picture} alt={this.props.picture_text} width='800'
-                                         height='500'/>
+                                    <img id="picture" className="card-img" src={this.props.picture} alt={this.props.picture_text} />
                                 </picture>
                                 <div className="container text-left">
-                                    <h1 id ="title">{this.props.title}</h1>
+                                    <h1 id="title">{this.props.title}</h1>
                                     <p id="date">Published: {this.props.date_created}</p>
                                     <hr/>
                                     <p id="text">{this.props.text}</p>
@@ -42,10 +40,11 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
 
                     ) : (
                         <div className="card mb-2">
-                            <h1 id="title2">{this.props.title}</h1>
                             <picture>
-                                <img id="picture2" src={this.props.picture} alt={this.props.picture_text} width='450' height='300'/>
+                                <img id="picture2" className="card-img" src={this.props.picture} alt={this.props.picture_text} />
                             </picture>
+                            <h1 id="title2">{this.props.title}</h1>
+                            <hr/>
                             <NavLink id="postLink" className="btn btn-light" exact to={'/posts/' + this.props.post_id}>
                                 Read ...
                             </NavLink>

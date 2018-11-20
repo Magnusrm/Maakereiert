@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react-simplified';
+import {Component} from 'react-simplified';
 import {commentService, postService} from "../../services";
 import {Alert} from "../../widgets";
 import {PostCard} from "../post/post";

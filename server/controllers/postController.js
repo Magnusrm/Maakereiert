@@ -1,7 +1,7 @@
 let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({extended: false});
 
-module.exports = function(app, postDao) {
+module.exports = function (app, postDao) {
 
     app.get('/posts/', (req, res) => {
         console.log('got get request from');

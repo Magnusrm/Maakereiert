@@ -6,10 +6,11 @@ import * as React from 'react';
 export class Menu extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-dark" >
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
 
 
-                <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}}  activeStyle={{color: 'skyblue'}}
+                <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}}
+                         activeStyle={{color: 'skyblue'}}
                          exact to="/home">
                     Måkereiret
                 </NavLink>
@@ -19,7 +20,8 @@ export class Menu extends Component {
                     <span className="navbar-toggler-icon"/>
                 </button>
 
-                <div className="collapse navbar-collapse collapse.show" data-target="#navbarSupportedContent" id="navbarSupportedContent">
+                <div className="collapse navbar-collapse collapse.show" data-target="#navbarSupportedContent"
+                     id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto" data-target="#navbarSupportedContent">
 
                         <li className="nav-item">

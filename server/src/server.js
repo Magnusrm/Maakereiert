@@ -4,16 +4,12 @@ import express from 'express';
 import path from 'path';
 import reload from 'reload';
 import fs from 'fs';
-//import {Students} from './models.js';
 import mysql from 'mysql';
 
 import PostDao from './postDao';
 import CommentDao from './commentDao';
 import postController from '../controllers/postController';
 import commentController from '../controllers/commentController';
-
-type Request = express$Request;
-type Response = express$Response;
 
 const public_path = path.join(__dirname, '/../../client/public');
 

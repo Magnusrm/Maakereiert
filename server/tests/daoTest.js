@@ -77,6 +77,7 @@ test("Add a post to database", done => {
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
     }
+
     function callback2(status, data) {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
@@ -186,10 +187,10 @@ test("add a comment to databese with regards to to a post", done => {
     }
 
     let newComment = {
-        'commenter' : 'Magnus',
-        'text' : 'test comment',
-        'comment_date' : 'test date',
-        'post_id' : 1
+        'commenter': 'Magnus',
+        'text': 'test comment',
+        'comment_date': 'test date',
+        'post_id': 1
     };
 
     commentDao.addComment(newComment, callback);

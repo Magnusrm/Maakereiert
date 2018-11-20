@@ -17,7 +17,7 @@ export class Category extends Component <{ match: { params: { cat: string } } }>
     render() {
         return (
             <div className="text-center">
-                <h2 id="category">
+                <h2 id="category" style={{color: 'skyblue'}}>
                     {this.props.match.params.cat}
                 </h2>
 

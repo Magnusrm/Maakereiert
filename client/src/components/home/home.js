@@ -17,7 +17,7 @@ export class Home extends Component {
     render() {
         return (
             <div className="text-center">
-                <h2>
+                <h2 style={{color: 'skyblue'}}>
                     viktige saker
                 </h2>
                 <FeedCard posts={this.posts}/>

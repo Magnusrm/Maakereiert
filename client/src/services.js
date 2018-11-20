@@ -1,5 +1,6 @@
 // @flow
 import axios from 'axios';
+
 axios.interceptors.response.use(response => response.data);
 
 
@@ -32,7 +33,7 @@ class PostService {
     }
 
     getPost(post_id: number): Promise<Post[]> {
-        return axios.get('/post/' +  post_id);
+        return axios.get('/post/' + post_id);
     }
 
     addPost(newPost: Post): Promise<Response> {
@@ -44,7 +45,7 @@ class PostService {
     }
 
     editPost(post: Post, post_id: number): Promise<Response> {
-        return axios.put('/edit_post/' + post_id, post)
+        return axios.put('/edit_post/' + post_id, post);
     }
 }
 
@@ -57,7 +58,7 @@ class CommentService {
         return axios.get('/comments/' + post_id)
     }
 
-    deleteComment(comment_id:number): Promise<Response> {
+    deleteComment(comment_id: number): Promise<Response> {
         return axios.put('delete_comment/' + comment_id);
     }
 
