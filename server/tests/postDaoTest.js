@@ -132,9 +132,28 @@ test("Edit an existing post", done => {
     postDao.updatePost(10, post, callback);
     postDao.getAll(callback2);
 
-
 });
 
+test("Delete a postt", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+    }
+
+    function callback2(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(6);
+        expect(data[0].title).toBe("Test title9");
+        done();
+    }
+
+    postDao.deletePost(10, callback);
+    postDao.getAll(callback2);
+
+});
 
 // commentDao tests
 
@@ -149,4 +168,31 @@ test("Get all comments from specified post", done => {
     }
 
     commentDao.getComments(1, callback);
+});
+
+test("add a comment to databese with regards to to a post", done => {
+    function callback(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+    }
+
+    function callback2(status, data) {
+        console.log(
+            "Test callback: status=" + status + ", data=" + JSON.stringify(data)
+        );
+        expect(data.length).toBe(2);
+        expect(data[0].commenter).toBe("Guy1");
+        done();
+    }
+
+    let newComment = {
+        'commenter' : 'Magnus',
+        'text' : 'test comment',
+        'comment_date' : 'test date',
+        'post_id' : 1
+    };
+
+    commentDao.addComment(newComment, callback);
+    commentDao.getComments(1, callback2)
 });

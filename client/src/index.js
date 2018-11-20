@@ -31,7 +31,8 @@ class Menu extends Component {
             <nav className="navbar navbar-expand-lg navbar-light bg-dark" style={{height: 80}}>
 
 
-                <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}} exact to="/home">
+                <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}}  activeStyle={{color: 'skyblue'}}
+                         exact to="/home">
                     Måkereiret
                 </NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -42,12 +43,7 @@ class Menu extends Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
-                                     activeStyle={{color: 'skyblue'}} to="/home">
-                                Home
-                            </NavLink>
-                        </li>
+
                         <li className="nav-item">
                             <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
                                      activeStyle={{color: 'skyblue'}} to="/category/sport">
