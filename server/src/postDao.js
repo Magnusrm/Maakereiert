@@ -26,7 +26,7 @@ module.exports = class PostDao extends Dao {
 
     getPost(post_id: number, callback: Function) {
         super.query(
-            "select post_id, title, text, picture, picture_text, date_created, category from post " +
+            "select post_id, title, text, picture, picture_text, date_created, category, importance from post " +
             "where post_id =? AND active = 1",
             [post_id],
             callback
@@ -43,7 +43,7 @@ module.exports = class PostDao extends Dao {
     }
 
     updatePost(post_id: number, json: Object, callback: Function) {
-        let val = [json.title, json.text, json.picture, json.pictureText, json.category, json.importance, post_id];
+        let val = [json.title, json.text, json.picture, json.picture_text, json.category, json.importance, post_id];
         super.query(
             "update post set title =?, text =?, picture =?, picture_text=?, category=?, importance=? " +
             "where post_id = ?",

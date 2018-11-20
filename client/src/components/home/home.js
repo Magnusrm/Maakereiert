@@ -1,15 +1,15 @@
-import * as React from 'react';
-import { Component } from 'react-simplified';
-import {FeedCard} from "../feed/feed";
+import {Component} from "react-simplified";
 import {postService} from "../../services";
 import {Alert} from "../../widgets";
+import {FeedCard} from "../feed/feed";
+import * as React from 'react';
 
-export class Category extends Component <{ match: { params: { cat: string } } }> {
+export class Home extends Component {
     posts = [];
 
     componentDidMount() {
         postService
-            .getCat(this.props.match.params.cat)
+            .getPosts()
             .then(posts => (this.posts = posts))
             .catch((error: Error) => Alert.danger(error.message));
     }
@@ -17,11 +17,10 @@ export class Category extends Component <{ match: { params: { cat: string } } }>
     render() {
         return (
             <div className="text-center">
-                <h2 id="category">
-                    {this.props.match.params.cat}
+                <h2>
+                    viktige saker
                 </h2>
-
-                <FeedCard id="feedCard" posts={this.posts}/>
+                <FeedCard posts={this.posts}/>
             </div>
         )
     }

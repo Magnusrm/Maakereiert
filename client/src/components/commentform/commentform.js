@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Component} from 'react-simplified';
 import {commentService} from '../../services';
 import {Button} from '../../widgets';
-import {Alert, Form} from "../../widgets";
+import {Alert} from "../../widgets";
 import createHashHistory from 'history/createHashHistory';
 
 const history = createHashHistory();
@@ -12,11 +12,14 @@ export class CommentForm extends Component <{post_id: number}> {
     commenter = '';
     text = '';
 
+    validateForm = () => {
+        return this.commenter !== '' &&
+            this.text !== '';
+    };
+
     render() {
         return (
             <div className="container">
-                <form ref={e => (this.form = e)}>
-
                     <div className="form-group">
                         <label htmlFor="inputName">Name</label>
                         <input
@@ -42,26 +45,30 @@ export class CommentForm extends Component <{post_id: number}> {
 
                     <Button onClick={this.create} type="primary">Submit</Button>
 
-                </form>
             </div>
         );
     }
 
     create() {
+        if(this.validateForm()) {
 
-        let time = new Date();
-        let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
+            let time = new Date();
+            let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
 
-        let newComment = {
-            'commenter' : this.commenter,
-            'text' : this.text,
-            'comment_date' : dateCreated,
-            'post_id' : this.props.post_id
-        };
-        this.commenter = "";
-        this.text = "";
-        commentService.addComment(newComment)
-            .catch((error: Error) => Alert.danger(error.message));
+            let newComment = {
+                'commenter' : this.commenter,
+                'text' : this.text,
+                'comment_date' : dateCreated,
+                'post_id' : this.props.post_id
+            };
+            this.commenter = "";
+            this.text = "";
+            commentService.addComment(newComment)
+                .catch((error: Error) => Alert.danger(error.message));
+
+        } else {
+            Alert.danger('Write out your comment before submitting it!')
+        }
 
     }
 }

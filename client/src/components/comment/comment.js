@@ -6,12 +6,11 @@ export class CommentCard extends Component <{ commenter: string, text: string, c
 
     render() {
         return (
-            <div className="card">
+            <div className="card mx-3 mb-2 px-1">
 
-                <h4>{this.props.commenter}</h4>
-                <p>commented: {this.props.comment_date}</p>
-
-                <p>{this.props.text}</p>
+                <h4 id="commenter">{this.props.commenter}</h4>
+                <p id="comment_date" style={{color: 'grey'}}>commented: {this.props.comment_date}</p>
+                <p id="text">{this.props.text}</p>
             </div>
         );
     }
