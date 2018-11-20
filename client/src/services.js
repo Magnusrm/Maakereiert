@@ -14,6 +14,14 @@ class Post {
     importance: string
 }
 
+class Comment {
+    comment_id: number;
+    commenter: string;
+    text: string;
+    comment_date: string;
+    post_id: number;
+}
+
 class PostService {
     getPosts(): Promise<Post[]> {
         return axios.get('/posts/');
@@ -38,14 +46,6 @@ class PostService {
     editPost(post: Post, post_id: number): Promise<Response> {
         return axios.put('/edit_post/' + post_id, post)
     }
-}
-
-class Comment {
-    comment_id: number;
-    commenter: string;
-    text: string;
-    comment_date: string;
-    post_id: number;
 }
 
 class CommentService {

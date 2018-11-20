@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {postService} from '../../services';
-import {Button} from '../../widgets';
-import {Alert} from "../../widgets";
+import {Button, Alert} from '../../widgets';
 
 import createHashHistory from 'history/createHashHistory';
 
@@ -40,7 +39,7 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
         return (
             <div className="container col-6">
                 <div className="form-group">
-                    <label htmlFor="inputTitle">Title</label>
+                    <label htmlFor="inputTitle1">Title</label>
                     <input
                         type="text"
                         className="form-control"

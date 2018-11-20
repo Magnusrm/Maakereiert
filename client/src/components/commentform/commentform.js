@@ -4,11 +4,13 @@ import {commentService} from '../../services';
 import {Button} from '../../widgets';
 import {Alert} from "../../widgets";
 import createHashHistory from 'history/createHashHistory';
+import {CommentFeed} from "../commentfeed/commentfeed";
 
 const history = createHashHistory();
 
-export class CommentForm extends Component <{post_id: number}> {
+export class CommentForm extends Component <{post_id: number, comments: Comment[]}> {
 
+    comments = this.props.comments;
     commenter = '';
     text = '';
 
@@ -45,6 +47,15 @@ export class CommentForm extends Component <{post_id: number}> {
 
                     <Button onClick={this.create} type="primary">Submit</Button>
 
+                {
+                    this.comments && this.comments.length > 0 ? (
+                        <div className="text-left">
+                            <CommentFeed comments={this.comments}/>
+                        </div>
+                    ) : (
+                        <p/>
+                    )
+                }
             </div>
         );
     }
@@ -63,6 +74,11 @@ export class CommentForm extends Component <{post_id: number}> {
             };
             this.commenter = "";
             this.text = "";
+
+            let tempComments = this.comments;
+            tempComments.push(newComment);
+            this.comments = tempComments;
+
             commentService.addComment(newComment)
                 .catch((error: Error) => Alert.danger(error.message));
 

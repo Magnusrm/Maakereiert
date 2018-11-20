@@ -36,17 +36,7 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
                                 post</NavLink>
                             <div className="card text-left">
                                 <h3>Comment this post:</h3>
-                                <CommentForm post_id={this.props.post_id}/>
-
-                                {
-                                    this.props.comments && this.props.comments.length > 0 ? (
-                                        <div className="text-left">
-                                            <CommentFeed comments={this.props.comments}/>
-                                        </div>
-                                    ) : (
-                                        <p/>
-                                    )
-                                }
+                                <CommentForm post_id={this.props.post_id} comments={this.props.comments}/>
                             </div>
                         </div>
 
@@ -56,7 +46,7 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
                             <picture>
                                 <img id="picture2" src={this.props.picture} alt={this.props.picture_text} width='450' height='300'/>
                             </picture>
-                            <NavLink className="btn btn-light" exact to={'/posts/' + this.props.post_id}>
+                            <NavLink id="postLink" className="btn btn-light" exact to={'/posts/' + this.props.post_id}>
                                 Read ...
                             </NavLink>
                         </div>
