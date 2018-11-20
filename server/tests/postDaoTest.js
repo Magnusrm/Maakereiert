@@ -129,7 +129,7 @@ test("Edit an existing post", done => {
         importance: 1,
     };
 
-    postDao.updatePost(9, post, callback);
+    postDao.updatePost(10, post, callback);
     postDao.getAll(callback2);
 
 
