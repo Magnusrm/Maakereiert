@@ -181,8 +181,7 @@ test("add a comment to databese with regards to to a post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(2);
-        expect(data[0].commenter).toBe("Guy1");
+        expect(data.length).toBe(3);
         done();
     }
 
