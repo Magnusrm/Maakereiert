@@ -5,7 +5,7 @@ import runsqlfile from './runSQLFile';
 
 // GitLab CI Pool
 let pool = mysql.createPool({
-    connectionLimit: 1,
+    connectionLimit: 15,
     host: "mysql",
     user: "root",
     password: "abc123",
