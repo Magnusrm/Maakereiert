@@ -5,7 +5,7 @@ import runsqlfile from './runSQLFile';
 
 // GitLab CI Pool
 let pool = mysql.createPool({
-    connectionLimit: 15,
+    connectionLimit: 1,
     host: "mysql",
     user: "root",
     password: "abc123",
@@ -17,13 +17,13 @@ let pool = mysql.createPool({
 let commentDao = new CommentDao(pool);
 let postDao = new PostDao(pool);
 
-beforeEach(done => {
+beforeAll(done => {
     runsqlfile("tests/sqlFiles/createTables.sql", pool, () => {
         runsqlfile("tests/sqlFiles/createTestData.sql", pool, done);
     });
 });
 
-afterEach(() => {
+afterAll(() => {
     pool.end();
 });
 
@@ -115,7 +115,7 @@ test("Edit an existing post", done => {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
         );
-        expect(data.length).toBe(6);
+        expect(data.length).toBe(7);
         expect(data[0].title).toBe("TEST TITLE EDIT");
         done();
     }
