@@ -71,7 +71,7 @@ test("Get specified post", done => {
 });
 
 
-test.only("Add a post to database", done => {
+test("Add a post to database", done => {
     function callback(status, data) {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
@@ -97,8 +97,8 @@ test.only("Add a post to database", done => {
         active: 1
     };
 
-    postDao.addPost(post, callback)
-        .then(postDao.getAll(callback2))
+    postDao.addPost(post, callback);
+    postDao.getAll(callback2);
 
 
 });
@@ -129,8 +129,8 @@ test("Edit an existing post", done => {
         importance: 1,
     };
 
-    postDao.updatePost(9, post, callback)
-        .then(postDao.getAll(callback2))
+    postDao.updatePost(9, post, callback);
+    postDao.getAll(callback2);
 
 
 });
