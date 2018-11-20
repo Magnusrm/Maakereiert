@@ -104,7 +104,7 @@ test("Add a post to database", done => {
 });
 
 
-test("Edit an existing post", done => {
+test.only("Edit an existing post", done => {
     function callback(status, data) {
         console.log(
             "Test callback: status=" + status + ", data=" + JSON.stringify(data)
