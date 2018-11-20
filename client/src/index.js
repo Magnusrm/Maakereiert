@@ -13,8 +13,6 @@ import {Menu} from './components/menu/menu';
 import {PostView} from './components/article/article';
 import {LiveFeed} from './components/livefeed/livefeed';
 import {Home} from './components/home/home';
-import createHashHistory from 'history/createHashHistory';
-
 
 // Reload application when not in production environment
 if (process.env.NODE_ENV !== 'production') {
@@ -22,8 +20,6 @@ if (process.env.NODE_ENV !== 'production') {
     script.src = '/reload/reload.js';
     if (document.body) document.body.appendChild(script);
 }
-
-const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
 const root = document.getElementById('root');
 if (root)
