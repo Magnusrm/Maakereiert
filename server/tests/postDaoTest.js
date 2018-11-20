@@ -17,13 +17,13 @@ let pool = mysql.createPool({
 let commentDao = new CommentDao(pool);
 let postDao = new PostDao(pool);
 
-beforeAll(done => {
+beforeEach(done => {
     runsqlfile("tests/sqlFiles/createTables.sql", pool, () => {
         runsqlfile("tests/sqlFiles/createTestData.sql", pool, done);
     });
 });
 
-afterAll(() => {
+afterEach(() => {
     pool.end();
 });
 
