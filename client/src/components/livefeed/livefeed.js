@@ -11,7 +11,7 @@ export class LiveFeed extends Component {
 
     componentDidMount() {
         this.getCases();
-        setInterval(this.getCases, 60000);
+        setInterval(this.getCases, 10000);
     }
 
     getCases = () => {

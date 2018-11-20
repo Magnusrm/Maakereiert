@@ -21,7 +21,7 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
             this.post.picture !== '' &&
             this.post.picture_text !== '' &&
             this.post.category !== '' &&
-            this.post.importance !== -1 &&
+            this.post.importance !== '' &&
             this.importanceChanged &&
             this.categoryChanged;
     };
@@ -97,7 +97,7 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
                          onChange={evt => (this.post.importance = evt.target.value) && (this.importanceChanged = true)}>
                         <label htmlFor="inputImportance">Importance</label>
                         <select className="form-control" id="inputImportance">
-                            <option value={-1}>Importance</option>
+                            <option value="">Importance</option>
                             <option value={1}>Important</option>
                             <option value={2}>Less important</option>
                         </select>

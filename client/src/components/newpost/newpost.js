@@ -18,12 +18,18 @@ export class NewPost extends Component {
     category = '';
     importance = -1;
 
+    importanceChanged = false;
+    categoryChanged = false;
+
     validateForm = () => {
 
         return this.title !== '' &&
             this.text !== '' &&
             this.picture !== '' &&
             this.picture_text !== '' &&
+            this.category !== '' &&
+            this.importanceChanged &&
+            this.categoryChanged &&
             this.importance !== -1;
     };
 
@@ -76,10 +82,10 @@ export class NewPost extends Component {
 
                 <div className="form-row">
                     <div className="form-group col-6" defaultValue={this.category}
-                         onChange={evt => this.category = evt.target.value}>
+                         onChange={evt => (this.category = evt.target.value) && (this.categoryChanged = true)}>
                         <label htmlFor="inputCategory">Category</label>
                         <select className="form-control" id="inputCategory">
-                            <option value=''>Category</option>
+                            <option value="">Category</option>
                             <option value="Annet">Other</option>
                             <option value="Sport">Sport</option>
                             <option value="Politikk">Politics</option>
@@ -87,7 +93,7 @@ export class NewPost extends Component {
                     </div>
 
                     <div className="form-group col-6" defaultValue={this.importance}
-                         onChange={evt => this.importance = evt.target.value}>
+                         onChange={evt => (this.importance = evt.target.value) && (this.importanceChanged = true)}>
                         <label htmlFor="inputImportance">Importance</label>
                         <select className="form-control" id="inputImportance">
                             <option value={-1}>Importance</option>

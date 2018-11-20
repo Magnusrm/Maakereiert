@@ -6,7 +6,7 @@ import * as React from 'react';
 export class Menu extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-dark" style={{height: 80}}>
+            <nav className="navbar navbar-expand-lg navbar-light bg-dark" >
 
 
                 <NavLink className="navbar-brand" style={{color: 'white', 'font-size': 50}}  activeStyle={{color: 'skyblue'}}
@@ -19,8 +19,8 @@ export class Menu extends Component {
                     <span className="navbar-toggler-icon"/>
                 </button>
 
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                <div className="collapse navbar-collapse collapse.show" data-target="#navbarSupportedContent" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto" data-target="#navbarSupportedContent">
 
                         <li className="nav-item">
                             <NavLink className="nav-link" style={{color: 'white', 'font-size': 25}}
