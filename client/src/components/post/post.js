@@ -18,7 +18,7 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
         return (
             <div className="container col-8 text-center">
                 {
-                    this.props.text && this.props.comments ? (
+                    this.props.text || this.props.comments ? (
                         <div>
                             <div className="card">
                                 <picture>
