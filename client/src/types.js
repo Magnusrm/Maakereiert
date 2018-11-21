@@ -11,7 +11,7 @@ export class Post {
     importance: number;
 
 
-    constructor(post_id: number, title: string, text: string, picture: string, picture_text: string, date_created: string, category: string, importance: string) {
+    constructor(post_id: number, title: string, text: string, picture: string, picture_text: string, date_created: string, category: string, importance: number) {
         this.post_id = post_id;
         this.title = title;
         this.text = text;

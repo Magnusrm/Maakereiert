@@ -23,7 +23,7 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
             this.post.picture !== '' &&
             this.post.picture_text !== '' &&
             this.post.category !== '' &&
-            this.post.importance !== '' &&
+            this.post.importance !== -1 &&
             this.importanceChanged &&
             this.categoryChanged;
     };
@@ -99,7 +99,7 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
                          onChange={evt => (this.post.importance = evt.target.value) && (this.importanceChanged = true)}>
                         <label htmlFor="inputImportance">Importance</label>
                         <select className="form-control" id="inputImportance">
-                            <option value="">Importance</option>
+                            <option value={-1}>Importance</option>
                             <option value={1}>Important</option>
                             <option value={2}>Less important</option>
                         </select>
@@ -114,7 +114,6 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
         if (this.validateForm()) {
             let post = new Post(this.post.post_id, this.post.title, this.post.text, this.post.picture,
                 this.post.picture_text, this.post.date_created, this.post.category,
-                //$FlowFixMe
                 this.post.importance);
                 /*
                 {
