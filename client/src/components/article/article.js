@@ -1,8 +1,11 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {commentService, postService} from "../../services";
 import {Alert} from "../../widgets";
 import {PostCard} from "../post/post";
+import {Comment} from '../../types';
 
 export class PostView extends Component <{ match: { params: { post_id: number } } }> {
     post = null;

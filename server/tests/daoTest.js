@@ -1,3 +1,5 @@
+//@flow
+
 import mysql from 'mysql';
 import PostDao from '../src/postDao';
 import CommentDao from '../src/commentDao';

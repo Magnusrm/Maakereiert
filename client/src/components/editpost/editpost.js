@@ -1,8 +1,10 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {postService} from '../../services';
 import {Button, Alert} from '../../widgets';
-
+import {Post} from '../../types';
 import createHashHistory from 'history/createHashHistory';
 
 const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
@@ -10,7 +12,7 @@ const history = createHashHistory(); // Use history.push(...) to programmaticall
 
 export class EditPost extends Component <{ match: { params: { post_id: number } } }> {
 
-    post = null;
+    post = {};
     importanceChanged = false;
     categoryChanged = false;
 
@@ -110,15 +112,22 @@ export class EditPost extends Component <{ match: { params: { post_id: number } 
 
     update() {
         if (this.validateForm()) {
-            let post = {
+            let post = new Post(this.post.post_id, this.post.title, this.post.text, this.post.picture,
+                this.post.picture_text, this.post.date_created, this.post.category,
+                //$FlowFixMe
+                this.post.importance);
+                /*
+                {
+                'post_id': this.post.post_id,
                 'title': this.post.title,
                 'text': this.post.text,
                 'picture': this.post.picture,
                 'picture_text': this.post.picture_text,
+                'date_created': this.post.date_created,
                 'category': this.post.category,
                 'importance': this.post.importance
             };
-
+*/
             console.log(post);
             postService.editPost(post, this.props.match.params.post_id)
                 .then(history.push('/posts/' + this.props.match.params.post_id))

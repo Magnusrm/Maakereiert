@@ -1,8 +1,11 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {postService} from '../../services';
 import {Button} from '../../widgets';
 import {Alert} from "../../widgets";
+import {Post} from '../../types';
 
 import createHashHistory from 'history/createHashHistory';
 
@@ -112,6 +115,9 @@ export class NewPost extends Component {
             let time = new Date();
             let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
 
+            let newPost = new Post(-1, this.title, this.text, this.picture, this.picture_text, dateCreated, this.category, this.importance)
+
+            /*
             let newPost = {
                 'title': this.title,
                 'text': this.text,
@@ -122,6 +128,8 @@ export class NewPost extends Component {
                 'importance': this.importance,
                 'active': 1
             };
+*/
+
 
             console.log(newPost);
             postService.addPost(newPost)

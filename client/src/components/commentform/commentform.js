@@ -1,3 +1,5 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {commentService} from '../../services';
@@ -5,6 +7,7 @@ import {Button} from '../../widgets';
 import {Alert} from "../../widgets";
 import createHashHistory from 'history/createHashHistory';
 import {CommentFeed} from "../commentfeed/commentfeed";
+import {Comment} from '../../types';
 
 const history = createHashHistory();
 

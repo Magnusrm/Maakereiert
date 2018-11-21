@@ -1,7 +1,10 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {PostCard} from '../post/post';
 import {Button} from '../../widgets';
+import {Post} from '../../types';
 
 export class FeedCard extends Component<{ posts: Post[] }> {
     limit = 5;
@@ -10,18 +13,12 @@ export class FeedCard extends Component<{ posts: Post[] }> {
         return (
             <div className="container">
                 {
-                    this.props.cat ? (
-                        this.props.posts.filter(post => post.category === this.props.cat).slice(0, this.limit).map(post =>
-                            <PostCard id="postCard1" key={post.post_id} post_id={post.post_id} title={post.title}
-                                      picture={post.picture}
-                                      picture_text={post.picture_text} date_created={post.date_created}/>
-                        )
-                    ) : (
-                        this.props.posts.slice(0, this.limit).map(post => (
+
+                    this.props.posts.slice(0, this.limit).map(post => (
                             <PostCard id="postCard2" key={post.post_id} post_id={post.post_id} title={post.title}
                                       picture={post.picture}
                                       picture_text={post.picture_text} date_created={post.date_created}/>
-                        ))
+                        )
                     )
                 }
 

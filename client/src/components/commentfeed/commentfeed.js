@@ -1,6 +1,9 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {CommentCard} from '../comment/comment';
+import {Comment} from '../../types';
 
 export class CommentFeed extends Component <{ comments: Comment[] }> {
 

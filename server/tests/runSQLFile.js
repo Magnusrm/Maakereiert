@@ -1,7 +1,8 @@
-import mysql from 'mysql';
+//@flow
+
 import fs from 'fs';
 
-module.exports = function run(filename, pool, done) {
+module.exports = function run(filename: string, pool: Object, done: Function) {
     console.log("runsqlfile: reading file " + filename);
     let sql = fs.readFileSync(filename, "utf8");
     pool.getConnection((err, connection) => {

@@ -1,3 +1,5 @@
+//@flow
+
 import {Component} from "react-simplified";
 import {postService} from "../../services";
 import {Alert} from "../../widgets";

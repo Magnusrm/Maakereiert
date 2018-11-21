@@ -1,9 +1,10 @@
 // @flow
 import axios from 'axios';
+import {Post, Comment} from './types';
 
 axios.interceptors.response.use(response => response.data);
 
-
+/*
 class Post {
     post_id: number;
     title: string;
@@ -22,6 +23,7 @@ class Comment {
     comment_date: string;
     post_id: number;
 }
+*/
 
 class PostService {
     getPosts(): Promise<Post[]> {

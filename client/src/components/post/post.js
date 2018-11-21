@@ -1,9 +1,12 @@
+//@flow
+
 import * as React from 'react';
 import {Component} from 'react-simplified';
 import {NavLink} from 'react-router-dom';
 import {Alert, Button} from '../../widgets';
 import {postService} from '../../services';
 import {CommentForm} from '../commentform/commentform';
+import {Comment} from '../../types';
 
 import createHashHistory from 'history/createHashHistory';
 
@@ -15,7 +18,7 @@ export class PostCard extends Component <{ post_id: number, title: string, text?
         return (
             <div className="container col-8 text-center">
                 {
-                    this.props.text ? (
+                    this.props.text && this.props.comments ? (
                         <div>
                             <div className="card">
                                 <picture>
