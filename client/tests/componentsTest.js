@@ -50,7 +50,7 @@ describe('Test for PostCard component article version', () => {
 
     beforeEach(() => {
         wrapper = shallow(<PostCard post_id={post_id} title={title} text={text} picture={picture}
-                                    picture_text={picture_text} date_created={date_created}/>)
+                                    picture_text={picture_text} date_created={date_created} comments={[]}/>)
     });
 
     it('testing title value', () => {
