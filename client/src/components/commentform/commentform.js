@@ -69,12 +69,16 @@ export class CommentForm extends Component <{ post_id: number, comments: Comment
             let time = new Date();
             let dateCreated = (time.getDate() + '/' + (time.getMonth() + 1) + '/' + time.getFullYear() + ', ' + time.getHours() + ':' + time.getMinutes());
 
+            let newComment = new Comment(-1, this.commenter, this.text, dateCreated, this.props.post_id);
+            /*
             let newComment = {
                 'commenter': this.commenter,
                 'text': this.text,
                 'comment_date': dateCreated,
                 'post_id': this.props.post_id
             };
+            */
+
             this.commenter = "";
             this.text = "";
 
